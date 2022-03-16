@@ -1,0 +1,20 @@
+{
+    "data": {
+        "id": 1,
+        "type": "project",
+        "attributes": {
+            "title": "some title"
+        },
+        "relationships": {
+            "user": {
+                "data": {
+                    "id": 9,
+                    "type": "user"
+                }
+            },
+            "tasks": {
+                "data": []
+            }
+        }
+    }
+}
