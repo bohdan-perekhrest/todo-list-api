@@ -33,7 +33,7 @@ module Service
           if plain_errors?(nested_errors)
             memo << compose_errors(new_pointer, nested_errors)
           else
-           parse_nested_errors_hash(nested_errors, new_pointer, memo)
+            parse_nested_errors_hash(nested_errors, new_pointer, memo)
           end
         end
       end
@@ -49,4 +49,4 @@ module Service
       end
     end
   end
-end 
+end

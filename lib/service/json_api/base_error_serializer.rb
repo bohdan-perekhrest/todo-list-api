@@ -36,9 +36,9 @@ module Service
         end.compact
 
         contracts.map { |contract| result[contract].errors.messages }.reduce(:merge)
-     end
+      end
 
       def parse_errors; end
     end
   end
-end 
+end

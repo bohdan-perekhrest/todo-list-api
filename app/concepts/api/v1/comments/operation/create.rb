@@ -15,7 +15,7 @@ module Api::V1::Comments::Operation
     step Macro::Semantic(success: :created)
     pass Macro::Render(serializer: Api::V1::Lib::Serializer::Comment)
 
-    def add_task!(ctx, model:, params:, **)
+    def add_task!(_ctx, model:, params:, **)
       model.task_id = params[:task_id]
     end
   end

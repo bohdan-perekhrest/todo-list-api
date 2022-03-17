@@ -77,11 +77,11 @@ RSpec.describe 'V1::Tasks API', api: true, type: :request do
 
     it 'updates status of task', :dox do
       expect(response).to have_http_status(:ok)
-			expect(response.body).to include("#{!task.done}")
+			expect(response.body).to include("true")
     end
 	end
 
-	describe 'PATCH /api/v1/tasks/:id/complete' do
+	describe 'PATCH /api/v1/tasks/:id/position' do
 		include ApiDoc::V1::Tasks::Position
 		let(:task) { Task.create!({ title: 'some title', user_id: user.id, project_id: project.id }) }
 		let(:valid_params) { { 'task': { 'position': 2 } } }

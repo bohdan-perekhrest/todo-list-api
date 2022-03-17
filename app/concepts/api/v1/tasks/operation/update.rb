@@ -6,8 +6,8 @@ module Api::V1::Tasks::Operation
     step Rescue(JWT::VerificationError, JWT::DecodeError) {
       step Api::V1::Lib::Service::Authorize
     }, fail_fast: true
-    step Policy::Pundit(Api::V1::Lib::Policy::User, :change_task?)
     step Contract::Build(name: 'form', constant: Api::V1::Tasks::Contract::Create)
+    step Policy::Pundit(Api::V1::Lib::Policy::User, :change_task?)
     step Contract::Validate(name: 'form', key: 'task')
     step Contract::Persist(name: 'form')
     fail Macro::Semantic(failure: :invalid)

@@ -17,7 +17,7 @@ module Api::V1::Tasks::Operation
     step Macro::Semantic(success: :created)
     pass Macro::Render(serializer: Api::V1::Lib::Serializer::Task)
 
-    def add_project!(ctx, model:, params:, **)
+    def add_project!(_ctx, model:, params:, **)
       model.project_id = params[:project_id]
     end
   end

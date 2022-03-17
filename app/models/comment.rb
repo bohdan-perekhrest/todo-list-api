@@ -7,4 +7,3 @@ class Comment < ApplicationRecord
 
   validates :image, length: { is: 1 }, allow_blank: true
 end
-

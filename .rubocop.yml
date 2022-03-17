@@ -1,0 +1,64 @@
+inherit_from: .rubocop_todo.yml
+
+require: 
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  Exclude:
+    - db/**/*
+    - script/**/*
+    - bin/**/*
+    - config/**/*
+    - spec/**/*
+    - vendor/bundle/**/*
+    - lib/tasks/*
+    - lib/macro/*
+    - app/controllers/concerns/*
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - spec/**/*
+    - app/admin/*
+    - app/controllers/concerns/*
+    - app/concepts/api/v1/**/contract/*
+
+Metrics/MethodLength:
+  Exclude:
+    - app/helpers/*
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/concepts/api/v1/**/operation/*
+
+Style/SignalException:
+  Exclude:
+    - app/concepts/api/v1/**/operation/*
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Exclude:
+    - config/initializer/*
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/OutputSafety:
+  Exclude:
+    - app/helpers/*
+
+Lint/MissingSuper:
+  Enabled: false
+
+Lint/UnreachableCode:
+  Exclude:
+    - app/concepts/api/v1/**/operation/*

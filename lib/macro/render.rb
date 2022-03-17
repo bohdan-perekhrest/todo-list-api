@@ -3,13 +3,12 @@
 module Macro
   def self.Render(serializer: ApplicationSerializer, **)
     task = Trailblazer::Activity::TaskBuilder::Binary(
-      ->(ctx, **) {
+      lambda { |ctx, **|
         ctx[:render] = {
           serializer: serializer
         }
       }
     )
-    {task: task}
+    { task: task }
   end
 end
-

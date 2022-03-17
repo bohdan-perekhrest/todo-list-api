@@ -15,4 +15,3 @@ module Api::V1::Projects::Operation
     pass Macro::Render(serializer: Api::V1::Projects::Serializer::Create)
   end
 end
-
