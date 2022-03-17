@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
 
+gem 'acts_as_list', '~> 1.0', '>= 1.0.4'
 gem 'aws-sdk-s3', '~> 1.113', require: false
 gem 'rails', '~> 6.1.4', '>= 6.1.4.6'
 gem 'pg', '~> 1.1'

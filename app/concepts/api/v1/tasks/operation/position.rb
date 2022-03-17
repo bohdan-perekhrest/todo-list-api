@@ -10,14 +10,10 @@ module Api
             step Api::V1::Lib::Service::Authorize
           }, fail_fast: true
           step Policy::Pundit(Api::V1::Lib::Policy::User, :change_task?)
-          step :change_position!
+          step Api::V1::Lib::Service::ChangePosition
           fail Macro::Semantic(failure: :invalid)
           step Macro::Semantic(success: :success)
           pass Macro::Render(serializer: Api::V1::Lib::Serializer::Task)
-
-          def change_position!(_ctx, model:, params:, **)
-            model.position = params['task']['position']
-          end
         end
       end
     end

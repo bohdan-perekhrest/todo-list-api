@@ -34,6 +34,7 @@ Metrics/MethodLength:
 Style/ClassAndModuleChildren:
   Exclude:
     - app/concepts/api/v1/**/operation/*
+    - app/concepts/api/v1/lib/service/*
 
 Style/SignalException:
   Exclude:
