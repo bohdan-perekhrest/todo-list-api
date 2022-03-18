@@ -282,6 +282,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   acts_as_list (~> 1.0, >= 1.0.4)
