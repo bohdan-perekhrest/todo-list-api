@@ -16,6 +16,7 @@ module Api
 
           def complete!(_ctx, model:, **)
             model.done = true
+            model.save
           end
         end
       end

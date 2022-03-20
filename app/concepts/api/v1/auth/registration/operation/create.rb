@@ -3,10 +3,10 @@
 module Api::V1::Auth::Registration::Operation
   class Create < ApplicationOperation
     step Model(User, :new)
-    step Contract::Build(constant: Api::V1::Auth::Registration::Contract::Create, name: 'registration')
-    step Contract::Validate(name: 'registration')
-    step Contract::Persist(name: 'registration')
-    fail Macro::Semantic(failure: :bad_request)
+    step Contract::Build(constant: Api::V1::Auth::Registration::Contract::Create, name: 'form')
+    step Contract::Validate(name: 'form', key: 'user')
+    step Contract::Persist(name: 'form')
+    fail Macro::Semantic(failure: :invalid)
     step :set_session_token
     step Macro::Render(serializer: Api::V1::Lib::Serializer::User)
     pass Macro::Semantic(success: :created)

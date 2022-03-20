@@ -18,6 +18,7 @@ gem 'dry-validation', '~> 1.8'
 gem 'bootsnap', '~> 1.10.3', require: false
 gem 'rack-cors'
 gem 'rexml', '~> 3.2', '>= 3.2.5'
+gem 'faker'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -30,8 +31,10 @@ group :development do
 end
 
 group :test do
-  gem 'json_matchers'
-  gem 'dox'
+  gem 'dox', require: false
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

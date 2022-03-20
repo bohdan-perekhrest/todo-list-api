@@ -1,44 +1,50 @@
-RSpec.describe 'V1::Tasks API', api: true, type: :request do
-  include ApiDoc::V1::Projects::Api
-  let(:user) { User.create({ email: 'some@example.com',
-                                username: 'username',
-                                password: 'password',
-                                password_confirmation: 'password' }) }
-  let(:token) { Api::V1::Lib::Service::AuthorizeToken.create(user_id: user.id) }
-  let(:valid_headers) { { 'HTTP_ACCESS_TOKEN': token } }
-  let(:project) { Project.create!({ title: 'some title', user_id: user.id }) }
-  let(:task) { Task.create!({ title: 'some title', user_id: user.id, project_id: project.id }) }
+# frozen_string_literal: true
 
-	describe 'GET /api/v1/tasks/:task_id/comments' do
+RSpec.describe Api::V1::CommentsController, api: true, type: :controller do
+  include ApiDoc::V1::Comments::Api
+  let(:user) { create(:user) }
+  before {
+    request.headers['HTTP_ACCESS_TOKEN'] = Api::V1::Lib::Service::AuthorizeToken.create(user_id: user.id)
+  }
+  let(:comment) { create(:comment, user_id: user.id) }
+  let(:valid_attributes) { attributes_for(:comment) }
+  let(:invalid_attributes) { attributes_for(:comment, body: '') }
+
+  describe 'GET #index' do
     include ApiDoc::V1::Comments::Index
 
-    before { get "/api/v1/tasks/#{task.id}/comments", headers: valid_headers }
-
-    it 'gets comments', :dox do
+    it 'returns a list of comments', :dox do
+      get :index, params: { task_id: comment.task_id }
       expect(response).to have_http_status(:ok)
     end
   end
 
-	describe 'POST /api/v1/tasks/:task_id/comments' do
+  describe 'POST #create' do
     include ApiDoc::V1::Comments::Create
-		let(:valid_params) { {'comment': { 'body': 'some body' } } }
+    context 'with valid params' do
+      it 'returns 201 status' do
+        post :create, params: { task_id: comment.task_id }, body: jsonapi_body(nil, :comment, valid_attributes)
+        expect(response).to have_http_status(:created)
+      end
+    end
 
-    before { post "/api/v1/tasks/#{task.id}/comments", params: valid_params, headers: valid_headers }
-
-    it 'POST comments', :dox do
-      expect(response).to have_http_status(:created)
-			expect(response.body).to include('some body')
+    context 'with invalid params' do
+      it 'returns bad request entity', :dox do
+        post :create, params: { task_id: comment.task_id }, body: jsonapi_body(nil, :comment, invalid_attributes)
+        expect(response).to have_http_status(400)
+      end
     end
   end
 
-	describe 'DELETE /api/v1/comments/:id' do
-    include ApiDoc::V1::Comments::Create
-		let(:comment) { Comment.create!(body: 'some body', task_id: task.id, user_id: user.id) }
+  describe 'DELETE #destroy' do
+    include ApiDoc::V1::Comments::Destroy
+    it 'deletes the requested comment', :dox do
+      expect { delete :destroy, params: { id: comment.id } }.to change(Comment, :count).by(0)
+    end
 
-    before { delete "/api/v1/comments/#{comment.id}", headers: valid_headers }
-
-    it 'POST comments', :dox do
-      expect(response).to have_http_status(:no_content)
+    it 'returns 204 status' do
+      delete :destroy, params: { id: comment.id }
+      expect(response).to have_http_status(204)
     end
   end
 end

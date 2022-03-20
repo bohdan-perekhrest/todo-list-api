@@ -17,12 +17,7 @@ module ApiDoc
       end
 
       document :create do
-        action 'Create project' do
-          verb 'POST'
-          request_schema 'namespace/projects'
-          response_schema_success 'namespace/projects_s'
-          response_schema_fail 'namespace/projects_f'
-        end
+        action 'Create project'
       end
 
       document :show do

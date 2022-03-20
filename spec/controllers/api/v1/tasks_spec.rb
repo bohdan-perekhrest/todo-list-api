@@ -1,95 +1,124 @@
 # frozen_string_literal: true
 
-RSpec.describe 'V1::Tasks API', api: true, type: :request do
-  include ApiDoc::V1::Projects::Api
-  let(:user) { User.create({ email: 'some@example.com',
-                              username: 'username',
-                              password: 'password',
-                              password_confirmation: 'password' }) }
-  let(:token) { Api::V1::Lib::Service::AuthorizeToken.create(user_id: user.id) }
-  let(:valid_headers) { { 'HTTP_ACCESS_TOKEN': token } }
-  let(:project) { Project.create!({ title: 'some title', user_id: user.id }) }
+RSpec.describe Api::V1::TasksController, api: true, type: :controller do
+  include ApiDoc::V1::Tasks::Api
+  let(:user) { create(:user) }
+  before {
+    request.headers['HTTP_ACCESS_TOKEN'] = Api::V1::Lib::Service::AuthorizeToken.create(user_id: user.id)
+  }
+  let(:project) { create(:project, user_id: user.id) }
+  let(:task) { create(:task, user_id: user.id, project_id: project.id, position: 1) }
+  let(:valid_attributes) { attributes_for(:task) }
+  let(:invalid_attributes) { attributes_for(:task, title: 123) }
 
-  describe 'GET /api/v1/projects/:project_id/tasks' do
+  describe 'GET #index' do
     include ApiDoc::V1::Tasks::Index
 
-    before { get "/api/v1/projects/#{project.id}/tasks", params: {}, headers: valid_headers }
-
-    it 'gets tasks', :dox do
+    it 'returns a list of tasks', :dox do
+      get :index, params: {project_id: task.project_id}
       expect(response).to have_http_status(:ok)
     end
   end
 
-  describe 'POST /api/v1/projects/:project_id/tasks' do
-    include ApiDoc::V1::Tasks::Create
-
-    let(:valid_params) { { 'task': { 'title': 'some title' } } }
-
-    before { post "/api/v1/projects/#{project.id}/tasks", params: valid_params, headers: valid_headers }
-
-    it 'creates task', :dox do
-      expect(response).to have_http_status(:created)
-      expect(response.body).to include('some title')
-    end
-  end
-
-  describe 'Patch/Put /api/v1/tasks/:id' do
-    include ApiDoc::V1::Tasks::Create
-
-    let(:task) { Task.create!({ title: 'some title', user_id: user.id, project_id: project.id }) }
-    let(:valid_params) { { 'task': { 'title': 'changed title' } } }
-
-    before { patch "/api/v1/tasks/#{task.id}", params: valid_params, headers: valid_headers }
-
-    it 'updates task', :dox do
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to include('changed title')
-    end
-  end
-
-  describe 'GET /api/v1/tasks/:id' do
+  describe 'GET #show' do
     include ApiDoc::V1::Tasks::Show
-		let(:task) { Task.create!({ title: 'some title', user_id: user.id, project_id: project.id }) }
+    context 'valid params' do
+      it 'returns a task', :dox do
+        get :show, params: { id: task.id }
+        expect(response).to have_http_status(:ok)
+      end
+    end
 
-		before { get "/api/v1/tasks/#{task.id}", headers: valid_headers }
-
-    it 'updates task', :dox do
-      expect(response).to have_http_status(:ok)
+    context 'invalid params' do
+      it 'does not find a task', :dox do
+        get :show, params: { id: 'invalid_id' }
+        expect(response).to have_http_status(401)
+      end
     end
   end
 
-  describe 'DELETE /api/v1/tasks/:id ' do
+  describe 'POST #create' do
+    include ApiDoc::V1::Tasks::Create
+    context 'with valid params' do
+      before { post :create, params: { project_id: task.project_id }, body: jsonapi_body(nil, :task, valid_attributes) }
+
+      it 'returns 201 status' do
+        expect(response).to have_http_status(:created)
+      end
+    end
+
+    context 'with invalid params' do
+      before { post :create, params: { project_id: task.project_id }, body: jsonapi_body(nil, :task, invalid_attributes) }
+      it "doesn't create a new task" do
+        expect {response}.to_not change(Task, :count)
+      end
+
+      it 'returns bad request entity', :dox do
+        expect(response).to have_http_status(400)
+      end
+    end
+  end
+
+  describe 'PUT #update' do
+    include ApiDoc::V1::Tasks::Update
+    context 'with valid params' do
+      it 'updates the requested task', :dox do
+        put :update, params: { id: task.id }, body: jsonapi_body(task.id, :task, title: 'New task')
+        expect(task.reload.title).to eq 'New task'
+      end
+
+      it 'returns 200 status' do
+        put :update, params: { id: task.id }, body: jsonapi_body(task.id, :task, title: 'New task')
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'with invalid params' do
+      it 'returns bad request entity', :dox do
+        put :update, params: { id: task.id }, body: jsonapi_body(task.id, :task, invalid_attributes)
+        expect(response).to have_http_status(400)
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
     include ApiDoc::V1::Tasks::Destroy
+    it 'deletes the requested task', :dox do
+      expect { delete :destroy, params: { id: task.id } }.to change(Task, :count).by(0)
+    end
 
-    let(:task) { Task.create!({ title: 'some title', user_id: user.id, project_id: project.id }) }
-
-    before { delete "/api/v1/tasks/#{task.id}", headers: valid_headers }
-
-    it 'delete task', :dox do
-      expect(response).to have_http_status(:no_content)
+    it 'returns 204 status' do
+      delete :destroy, params: { id: task.id }
+      expect(response).to have_http_status(204)
     end
   end
 
-	describe 'PATCH /api/v1/tasks/:id/complete' do
-		include ApiDoc::V1::Tasks::Complete
-		let(:task) { Task.create!({ title: 'some title', user_id: user.id, project_id: project.id }) }
-		before { patch "/api/v1/tasks/#{task.id}/complete", headers: valid_headers }
-
-    it 'updates status of task', :dox do
-      expect(response).to have_http_status(:ok)
-			expect(response.body).to include("true")
+  describe 'PUT #complete' do
+    include ApiDoc::V1::Tasks::Complete
+    it 'complete the requested task', :dox do
+      put :complete, params: { id: task.id }
+      expect(task.reload.done).to eq true
     end
-	end
 
-	describe 'PATCH /api/v1/tasks/:id/position' do
-		include ApiDoc::V1::Tasks::Position
-		let(:task) { Task.create!({ title: 'some title', user_id: user.id, project_id: project.id }) }
-		let(:valid_params) { { 'task': { 'position': 2 } } }
-		before { patch "/api/v1/tasks/#{task.id}/position", params: valid_params, headers: valid_headers }
-
-    it 'updates position of task', :dox do
+    it 'returns 200 status' do
+      put :complete, params: { id: task.id }
       expect(response).to have_http_status(:ok)
-			expect(response.body).to include("#{task.position}")
     end
-	end
+  end
+
+  describe 'PUT #position' do
+    include ApiDoc::V1::Tasks::Position
+
+    before { create(:task, project_id: task.project_id, position: 2) }
+
+    it 'change position the requested task', :dox do
+      put :position, params: { id: task.id }, body: jsonapi_body(task.id, :task, position: 2)
+      expect(task.reload.position).to eq 2
+    end
+
+    it 'returns 200 status' do
+      put :position, params: { id: task.id }, body: jsonapi_body(task.id, :task, position: 2)
+      expect(response).to have_http_status(:ok)
+    end
+  end
 end

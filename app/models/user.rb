@@ -7,4 +7,7 @@ class User < ApplicationRecord
   has_many :projects
   has_many :tasks
   has_many :comments
+
+  validates :username, presence: true
+  validates :email, :username, uniqueness: true
 end

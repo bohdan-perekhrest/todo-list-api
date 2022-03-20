@@ -11,7 +11,7 @@ module Api::V1::Projects::Operation
     step Contract::Validate(name: 'form', key: 'project')
     step Contract::Persist(name: 'form')
     fail Macro::Semantic(failure: :invalid)
-    step Macro::Semantic(success: :created)
+    step Macro::Semantic(success: :success)
     pass Macro::Render(serializer: Api::V1::Projects::Serializer::Create)
   end
 end
