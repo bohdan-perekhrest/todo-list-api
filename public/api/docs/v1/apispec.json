@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Documentation",
-    "description": "",
+    "title": "TodoList API",
+    "description": "# TodoList Api\n\nThis api is implemented according to the JSON API spec.\n\n",
     "version": "1.0"
   },
   "paths": {
@@ -30,7 +30,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDc4NjIzNTd9.7WtwWd9G97yDK3YKjQ2UvtLlAUkizM6JM8e3RPGMA7s"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDc4NjY0MTB9.nW-KS87Tf52o0DIvpWI71CssNgJvV7d_nMIUtbCe9v8"
           },
           {
             "name": "Content-Type",
@@ -93,7 +93,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDc4NjIzNTd9.jnQEoWR9E4t4ZlkAlTQa_-vp30_NYF3Y0rG-fImx1oU"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDc4NjY0MTB9.FuyGJHnfXn2_8vGs4Kir5BRWRlLY5Uo2Xjg1YH77qv0"
           },
           {
             "name": "Content-Type",
@@ -172,7 +172,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2NDc4NjIzNTd9.vjYYqcdgjX9dyjlqJ7kazHhzSiIcEoL_KHqt-H-0Vdg"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2NDc4NjY0MTB9.ruAOPidC-6IZoEoi5SLWZ8dyH41uDq_OlUd_4V5OTW0"
           },
           {
             "name": "Content-Type",
@@ -222,7 +222,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMCwiZXhwIjoxNjQ3ODYyMzU3fQ.Aj6yLSHZPdncpW6kYZGCEcMusOzQyHk62dhlJW61spY"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMCwiZXhwIjoxNjQ3ODY2NDEwfQ.iV8Igmeuc_yvSZsK-zk8IL5ICRWWA32jMi7zmRAopxw"
           },
           {
             "name": "Content-Type",
@@ -270,7 +270,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMywiZXhwIjoxNjQ3ODYyMzU3fQ.qNsNucBdKGndczpW3E6V34HTaoDa3GIvjGTNjmzXH5w"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMywiZXhwIjoxNjQ3ODY2NDEwfQ.0Tkn1reJ3CVqeX06-7GWTWYlNIXHjzdXN4mnHXwpgz4"
           },
           {
             "name": "Content-Type",
@@ -396,7 +396,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNjQ3ODYyMzU3fQ.XPK4QoHtjy2Usyv-M9Ns_i-AwKFVfY0YBT7kxiKO4Y4"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNjQ3ODY2NDEwfQ.RVRPJKdpqVrlbHE6ESx2uWSbrvyALAUeY8t_zHjVDLw"
           },
           {
             "name": "Content-Type",
@@ -481,7 +481,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNjQ3ODYyMzU3fQ.fik0Gtsj_FpagSNVxAKHosuoeRGYBp8QPtOX08eJ_bE"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNjQ3ODY2NDEwfQ.iCmDcoVeg5a-8IVeCkUEJnpEEWLq7aAztIuTwVcwPjc"
           },
           {
             "name": "Content-Type",
@@ -605,7 +605,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNywiZXhwIjoxNjQ3ODYyMzU3fQ.oMdGXaa4twEm2iQDyqieOUIPYQA0GNNvhqNuC4T-isI"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNywiZXhwIjoxNjQ3ODY2NDEwfQ.Zzt-aGiXebwJJYsneGHzesiRipNx-E7qE0CITdwDM6s"
           },
           {
             "name": "Content-Type",
@@ -663,7 +663,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxOCwiZXhwIjoxNjQ3ODYyMzU3fQ.ljEfPnq4BXMkUAsoO4s81VM_5wENA4-89ua14_zyZ5U"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxOCwiZXhwIjoxNjQ3ODY2NDEwfQ.NnloV_wcArUbGe9FEEhjc9ALG9R-ONn-r9eaL4rO968"
           },
           {
             "name": "Content-Type",
@@ -736,7 +736,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMSwiZXhwIjoxNjQ3ODYyMzU3fQ.jkJkPofw1qfEm4PSdUitf0S2N_GJt9Hu8le945eCSgM"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMSwiZXhwIjoxNjQ3ODY2NDEwfQ.7uVs-aJwAKxAhh_yrfBx3HJL3DoeC6BYJ80-0iNt_V4"
           },
           {
             "name": "Content-Type",
@@ -817,7 +817,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxOSwiZXhwIjoxNjQ3ODYyMzU3fQ.M8POic5u3mwzkpH88S851MITzLJT2ny_N-19jjLmoGg"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxOSwiZXhwIjoxNjQ3ODY2NDEwfQ.H1SUtu5yEBCJo13HI_XI53BHPChuTaoXlX-MgzDZIuI"
           },
           {
             "name": "Content-Type",
@@ -900,7 +900,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMiwiZXhwIjoxNjQ3ODYyMzU3fQ.-L9buRmqqo5lbQaIOgrLJS1Btr-IKRSPKdlxfoE-Sd0"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMiwiZXhwIjoxNjQ3ODY2NDEwfQ.r9ECB1Cy_lkjpfRHs9SIyGGChVxJynMQDWIK3POOrJs"
           },
           {
             "name": "Content-Type",
@@ -1024,7 +1024,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNCwiZXhwIjoxNjQ3ODYyMzU3fQ.3FS0xfko5yxYRiILtrL5KvxK8VNyCWPVOoG76xc_N7Q"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNCwiZXhwIjoxNjQ3ODY2NDEwfQ.29gogZaDH6Dqt-Bd_6y_J_iBi0WpT2Csj6ygqh2_tFc"
           },
           {
             "name": "Content-Type",
@@ -1082,7 +1082,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNSwiZXhwIjoxNjQ3ODYyMzU4fQ.YPPgSx4lDpHK-BRnIZLL2F5lYDBBCsk13ua0x8c2tDQ"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNSwiZXhwIjoxNjQ3ODY2NDEwfQ.BlDWV708BhlMNZG2BS6WOYEWlK1YGmZzmA9bgBg7Qgs"
           },
           {
             "name": "Content-Type",
@@ -1168,7 +1168,7 @@
           {
             "name": "HTTP_ACCESS_TOKEN",
             "in": "header",
-            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNiwiZXhwIjoxNjQ3ODYyMzU4fQ.IJ-9FjBAjkAYYJFYNkg0Wxy6aCuzz1zp-sXL-AdpYfg"
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNiwiZXhwIjoxNjQ3ODY2NDExfQ.vmObxQ6Bd9eBxThzWYIne-J6U5kYIz6OR1WQdXqrSTE"
           },
           {
             "name": "Content-Type",

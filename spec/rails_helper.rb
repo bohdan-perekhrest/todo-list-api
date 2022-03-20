@@ -91,7 +91,9 @@ RSpec.configure do |config|
 end
 
 Dox.configure do |config|
-  config.header_file_path = Rails.root.join('spec/api_doc/v1/descriptions/header.md')
-  config.desc_folder_path = Rails.root.join('spec/api_doc/v1/descriptions')
+  config.header_description = 'header.md'
+  config.descriptions_location  = Rails.root.join('spec/api_doc/v1/descriptions')
+  config.title = 'TodoList API'
+  config.api_version = '1.0'
   config.headers_whitelist = ['Accept', 'HTTP_ACCESS_TOKEN']
 end

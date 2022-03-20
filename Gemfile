@@ -21,6 +21,7 @@ gem 'rexml', '~> 3.2', '>= 3.2.5'
 gem 'faker'
 
 group :development, :test do
+  gem 'apiaryio', '~> 0.17.0'
   gem 'rspec-rails'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
