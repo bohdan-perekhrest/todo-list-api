@@ -1,0 +1,1271 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TodoList API",
+    "description": "# TodoList Api\n\nThis api is implemented according to the JSON API spec.\n\n",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/tasks/{task_id}/comments": {
+      "get": {
+        "summary": "Get comments",
+        "tags": [
+          "Comments"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "1"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDc4NjY0MTB9.nW-KS87Tf52o0DIvpWI71CssNgJvV7d_nMIUtbCe9v8"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "returns a list of comments": {
+                    "summary": "returns a list of comments",
+                    "value": {
+                      "data": [
+                        {
+                          "id": "1",
+                          "type": "Comment",
+                          "attributes": {
+                            "Body": "Awesome_Body_1",
+                            "Image": null
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create comment",
+        "tags": [
+          "Comments"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "2"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDc4NjY0MTB9.FuyGJHnfXn2_8vGs4Kir5BRWRlLY5Uo2Xjg1YH77qv0"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "returns bad request entity": {
+                  "summary": "returns bad request entity",
+                  "value": {
+                    "comment": {
+                      "body": ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "returns bad request entity": {
+                    "summary": "returns bad request entity",
+                    "value": {
+                      "errors": [
+                        {
+                          "source": {
+                            "pointer": "/body"
+                          },
+                          "detail": "must be filled"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/comments/{id}": {
+      "delete": {
+        "summary": "Destroy comment",
+        "tags": [
+          "Comments"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "3"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2NDc4NjY0MTB9.ruAOPidC-6IZoEoi5SLWZ8dyH41uDq_OlUd_4V5OTW0"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "deletes the requested comment": {
+                  "summary": "deletes the requested comment",
+                  "value": {
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "any": {
+              }
+            },
+            "headers": {
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects": {
+      "get": {
+        "summary": "Get projects",
+        "tags": [
+          "Projects"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMCwiZXhwIjoxNjQ3ODY2NDEwfQ.iV8Igmeuc_yvSZsK-zk8IL5ICRWWA32jMi7zmRAopxw"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "returns a list of projects": {
+                    "summary": "returns a list of projects",
+                    "value": {
+                      "data": [
+
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create project",
+        "tags": [
+          "Projects"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMywiZXhwIjoxNjQ3ODY2NDEwfQ.0Tkn1reJ3CVqeX06-7GWTWYlNIXHjzdXN4mnHXwpgz4"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "creates a new project": {
+                  "summary": "creates a new project",
+                  "value": {
+                    "project": {
+                      "title": "Project_5"
+                    }
+                  }
+                },
+                "returns bad request entity": {
+                  "summary": "returns bad request entity",
+                  "value": {
+                    "project": {
+                      "title": ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "creates a new project": {
+                    "summary": "creates a new project",
+                    "value": {
+                      "data": {
+                        "id": "5",
+                        "type": "Project",
+                        "attributes": {
+                          "Title": "Project_5"
+                        },
+                        "relationships": {
+                          "User": {
+                            "data": {
+                              "id": "13",
+                              "type": "User"
+                            }
+                          },
+                          "Tasks": {
+                            "data": [
+
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "returns bad request entity": {
+                    "summary": "returns bad request entity",
+                    "value": {
+                      "errors": [
+                        {
+                          "source": {
+                            "pointer": "/title"
+                          },
+                          "detail": "must be filled"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{id}": {
+      "get": {
+        "summary": "Show project",
+        "tags": [
+          "Projects"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "4"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNjQ3ODY2NDEwfQ.RVRPJKdpqVrlbHE6ESx2uWSbrvyALAUeY8t_zHjVDLw"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "returns a project": {
+                    "summary": "returns a project",
+                    "value": {
+                      "data": {
+                        "id": "4",
+                        "type": "Project",
+                        "attributes": {
+                          "Title": "Project_4"
+                        },
+                        "relationships": {
+                          "User": {
+                            "data": {
+                              "id": "11",
+                              "type": "User"
+                            }
+                          },
+                          "Tasks": {
+                            "data": [
+
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update project",
+        "tags": [
+          "Projects"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "6"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNjQ3ODY2NDEwfQ.iCmDcoVeg5a-8IVeCkUEJnpEEWLq7aAztIuTwVcwPjc"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "updates the requested project": {
+                  "summary": "updates the requested project",
+                  "value": {
+                    "project": {
+                      "title": "New project"
+                    }
+                  }
+                },
+                "returns bad request entity": {
+                  "summary": "returns bad request entity",
+                  "value": {
+                    "project": {
+                      "title": ""
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "updates the requested project": {
+                    "summary": "updates the requested project",
+                    "value": {
+                      "data": {
+                        "id": "6",
+                        "type": "Project",
+                        "attributes": {
+                          "Title": "New project"
+                        },
+                        "relationships": {
+                          "User": {
+                            "data": {
+                              "id": "15",
+                              "type": "User"
+                            }
+                          },
+                          "Tasks": {
+                            "data": [
+
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "returns bad request entity": {
+                    "summary": "returns bad request entity",
+                    "value": {
+                      "errors": [
+                        {
+                          "source": {
+                            "pointer": "/title"
+                          },
+                          "detail": "must be filled"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Destroy project",
+        "tags": [
+          "Projects"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "8"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNywiZXhwIjoxNjQ3ODY2NDEwfQ.Zzt-aGiXebwJJYsneGHzesiRipNx-E7qE0CITdwDM6s"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "deletes the requested project": {
+                  "summary": "deletes the requested project",
+                  "value": {
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "any": {
+              }
+            },
+            "headers": {
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/tasks": {
+      "get": {
+        "summary": "Get tasks",
+        "tags": [
+          "Tasks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "9"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxOCwiZXhwIjoxNjQ3ODY2NDEwfQ.NnloV_wcArUbGe9FEEhjc9ALG9R-ONn-r9eaL4rO968"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "returns a list of tasks": {
+                    "summary": "returns a list of tasks",
+                    "value": {
+                      "data": [
+                        {
+                          "id": "4",
+                          "type": "Task",
+                          "attributes": {
+                            "Title": "Task_4",
+                            "Done": false,
+                            "DueDate": null,
+                            "Position": 1,
+                            "CommentsCount": 0
+                          },
+                          "relationships": {
+                            "Comments": {
+                              "data": [
+
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create task",
+        "tags": [
+          "Tasks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "11"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMSwiZXhwIjoxNjQ3ODY2NDEwfQ.7uVs-aJwAKxAhh_yrfBx3HJL3DoeC6BYJ80-0iNt_V4"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "returns bad request entity": {
+                  "summary": "returns bad request entity",
+                  "value": {
+                    "task": {
+                      "title": 123,
+                      "position": 4,
+                      "done": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "returns bad request entity": {
+                    "summary": "returns bad request entity",
+                    "value": {
+                      "errors": [
+                        {
+                          "source": {
+                            "pointer": "/title"
+                          },
+                          "detail": "must be a string"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{id}": {
+      "get": {
+        "summary": "Show task",
+        "tags": [
+          "Tasks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "5"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxOSwiZXhwIjoxNjQ3ODY2NDEwfQ.H1SUtu5yEBCJo13HI_XI53BHPChuTaoXlX-MgzDZIuI"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "returns a task": {
+                    "summary": "returns a task",
+                    "value": {
+                      "data": {
+                        "id": "5",
+                        "type": "Task",
+                        "attributes": {
+                          "Title": "Task_5",
+                          "Done": false,
+                          "DueDate": null,
+                          "Position": 1,
+                          "CommentsCount": 0
+                        },
+                        "relationships": {
+                          "Comments": {
+                            "data": [
+
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json"
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update task",
+        "tags": [
+          "Tasks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "7"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyMiwiZXhwIjoxNjQ3ODY2NDEwfQ.r9ECB1Cy_lkjpfRHs9SIyGGChVxJynMQDWIK3POOrJs"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "updates the requested task": {
+                  "summary": "updates the requested task",
+                  "value": {
+                    "task": {
+                      "title": "New task"
+                    }
+                  }
+                },
+                "returns bad request entity": {
+                  "summary": "returns bad request entity",
+                  "value": {
+                    "task": {
+                      "title": 123,
+                      "position": 5,
+                      "done": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "updates the requested task": {
+                    "summary": "updates the requested task",
+                    "value": {
+                      "data": {
+                        "id": "7",
+                        "type": "Task",
+                        "attributes": {
+                          "Title": "New task",
+                          "Done": false,
+                          "DueDate": null,
+                          "Position": 1,
+                          "CommentsCount": 0
+                        },
+                        "relationships": {
+                          "Comments": {
+                            "data": [
+
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "returns bad request entity": {
+                    "summary": "returns bad request entity",
+                    "value": {
+                      "errors": [
+                        {
+                          "source": {
+                            "pointer": "/title"
+                          },
+                          "detail": "must be a string"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Destroy task",
+        "tags": [
+          "Tasks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "9"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNCwiZXhwIjoxNjQ3ODY2NDEwfQ.29gogZaDH6Dqt-Bd_6y_J_iBi0WpT2Csj6ygqh2_tFc"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "deletes the requested task": {
+                  "summary": "deletes the requested task",
+                  "value": {
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "any": {
+              }
+            },
+            "headers": {
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{id}/complete": {
+      "put": {
+        "summary": "Complete task",
+        "tags": [
+          "Tasks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "10"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNSwiZXhwIjoxNjQ3ODY2NDEwfQ.BlDWV708BhlMNZG2BS6WOYEWlK1YGmZzmA9bgBg7Qgs"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "complete the requested task": {
+                  "summary": "complete the requested task",
+                  "value": {
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "complete the requested task": {
+                    "summary": "complete the requested task",
+                    "value": {
+                      "data": {
+                        "id": "10",
+                        "type": "Task",
+                        "attributes": {
+                          "Title": "Task_10",
+                          "Done": true,
+                          "DueDate": null,
+                          "Position": 1,
+                          "CommentsCount": 0
+                        },
+                        "relationships": {
+                          "Comments": {
+                            "data": [
+
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tasks/{id}/position": {
+      "put": {
+        "summary": "Position task",
+        "tags": [
+          "Tasks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "example": "11"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "example": "application/json"
+          },
+          {
+            "name": "HTTP_ACCESS_TOKEN",
+            "in": "header",
+            "example": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyNiwiZXhwIjoxNjQ3ODY2NDExfQ.vmObxQ6Bd9eBxThzWYIne-J6U5kYIz6OR1WQdXqrSTE"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "example": "application/json"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "change position the requested task": {
+                  "summary": "change position the requested task",
+                  "value": {
+                    "task": {
+                      "position": 2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json; charset=utf-8": {
+                "examples": {
+                  "change position the requested task": {
+                    "summary": "change position the requested task",
+                    "value": {
+                      "data": {
+                        "id": "11",
+                        "type": "Task",
+                        "attributes": {
+                          "Title": "Task_11",
+                          "Done": false,
+                          "DueDate": null,
+                          "Position": 1,
+                          "CommentsCount": 0
+                        },
+                        "relationships": {
+                          "Comments": {
+                            "data": [
+
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Content-Type": {
+                "description": "application/json; charset=utf-8"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Comments",
+      "description": ""
+    },
+    {
+      "name": "Projects",
+      "description": ""
+    },
+    {
+      "name": "Tasks",
+      "description": ""
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "Comments",
+      "tags": [
+        "Comments"
+      ]
+    },
+    {
+      "name": "Projects",
+      "tags": [
+        "Projects"
+      ]
+    },
+    {
+      "name": "Tasks",
+      "tags": [
+        "Tasks"
+      ]
+    }
+  ]
+}
