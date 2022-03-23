@@ -1,6 +1,6 @@
 module JsonApiHelpers
   def jsonapi_body(id, type, attributes, opts = {})
-    b = {}.tap do |body|
+    {}.tap do |body|
       body[type] = {}
       attributes.each_pair do |attr, value|
         body[type][attr] = value

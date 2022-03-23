@@ -13,7 +13,7 @@ module Api
           pass Macro::Semantic(success: :destroyed)
 
           def destroy!(_ctx, model:, **)
-            model.destroy!
+            model.destroy
           end
         end
       end
